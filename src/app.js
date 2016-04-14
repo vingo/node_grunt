@@ -15,4 +15,11 @@ function* test2() {
     yield 2;
 }
 
+function testA() {
+    var arr = [];
+    arr.forEach(function(s) {
+        console.log(s);
+    });
+}
+
 module.exports = count = k;

@@ -32,7 +32,7 @@ module.exports = function(grunt) {
     babel: {
       options: {
         sourceMap: false, //生成源码文件
-        presets: ['es2015']
+        presets: ['es2015', 'stage-0']
       },
       convertToEs5: {
         files: {
@@ -55,8 +55,17 @@ module.exports = function(grunt) {
       //folder_v2: ['path/to/dir/**'],
       //contents: ['path/to/dir/*'],
       subfolders: ['./build/*', './built/*'],
-      //css: ['path/to/dir/*.css'],
       ///all_css: ['path/to/dir/**/*.css']
+    },
+    jsinspect: { //detect similar code.
+      examples: {
+        options: {
+          configFile: '.jsinspectrc'
+        },
+        src: [
+          './src/*.js' // limit directory
+        ]
+      }
     },
     concurrent: {
       task: ['uglify', 'watch', 'babel'],
@@ -74,8 +83,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-concurrent');
   grunt.loadNpmTasks('grunt-contrib-concat'); //文件合并
   grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-jsinspect'); //检测 代码相似的片段
   // 默认被执行的任务列表。
   grunt.option('force', true);
+  grunt.registerTask('test', ['jsinspect']);
   //grunt.registerTask('default', ['uglify', 'watch', 'babel']);
   /*grunt.registerTask('test', function(taskName) {
     console.log(taskName);

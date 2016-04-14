@@ -1,0 +1,11 @@
+{
+  "threshold":     10,
+  "identifiers":   true,
+  "matches":       2,
+  "ignore":        "",//Test.js|Spec.js", // used as RegExp,
+  "jsx":           true,
+  "reporter":      "json",
+  "suppress":      100,
+  "diff": true,
+  "color": true
+}
